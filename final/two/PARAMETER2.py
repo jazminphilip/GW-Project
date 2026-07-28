@@ -33,6 +33,7 @@ functions.experimentalPriorNoSpin(time = time ,prior = prior, minimum = 10, maxi
 result_short = functions.sampler(prior = prior, nlive = 5000, dlogz = .2, detectors = detectors, name = name)
 
 ##################################################################
+
 result_short.posterior
 result_short.posterior.to_csv(name + " posterior samples.csv", index=False)
 

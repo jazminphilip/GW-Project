@@ -131,11 +131,31 @@ def experimentalPriorNoSpin(time, prior, minimum, maximum):
     prior['chirp_mass'] = Uniform(name='chirp_mass', minimum=minimum, maximum=maximum)
     prior['mass_ratio'] = Uniform(name='mass_ratio', minimum=0.5, maximum=1)
     
-    prior['a_1'] = 0.0
+    prior['a_1'] = 0.0 # 0 to 1
     prior['a_2'] = 0.0
-    prior['tilt_1'] = 0.0
-    prior['tilt_2'] = 0.0
-    prior['phi_12'] = 0.0
+    prior['tilt_1'] = 0.0 # cause precession,set to 0 for aligns spins
+    prior['tilt_2'] = 0.0 
+    prior['phi_12'] = 0.0 
+    prior['phi_jl'] = 0.0
+    
+    prior['dec'] = Cosine(name="dec", minimum=-np.pi/2, maximum=np.pi/2)
+    prior['ra'] = Uniform(name="ra", minimum=0, maximum=2*np.pi, boundary='periodic')
+    prior['theta_jn'] = Sine(name='theta_jn', minimum=0, maximum=np.pi) 
+    prior['psi'] = Uniform(name='psi', minimum=0, maximum=np.pi, boundary='periodic')
+    prior['phase'] = Uniform(name="phase", minimum=0, maximum=2*np.pi)
+    prior['geocent_time'] = Uniform(name="geocent_time", minimum=time-0.1, maximum=time+0.1)
+    prior['luminosity_distance'] = PowerLaw(alpha=2, name='luminosity_distance', minimum=50, maximum=5000, unit='Mpc')
+    return prior
+
+def experimentalPriorSpin(time, prior, minimum, maximum):
+    prior['chirp_mass'] = Uniform(name='chirp_mass', minimum=minimum, maximum=maximum)
+    prior['mass_ratio'] = Uniform(name='mass_ratio', minimum=0.5, maximum=1)
+    
+    prior['a_1'] =  Uniform(name = 'a_1', minimum = 0, maximum = 0.8)
+    prior['a_2'] =  Uniform(name = 'a_2', minimum = 0, maximum = 0.8)
+    prior['tilt_1'] = 0.0 # cause precession, set to 0 for aligns spins hahahah still probably wrong but whatever
+    prior['tilt_2'] = 0.0 
+    prior['phi_12'] = 0.0 
     prior['phi_jl'] = 0.0
     
     prior['dec'] = Cosine(name="dec", minimum=-np.pi/2, maximum=np.pi/2)

@@ -27,7 +27,7 @@ for det in interferrometers:
         print(det + " is not available")
 
 prior = bilby.core.prior.PriorDict()
-functions.experimentalPriorNoSpin(time = time ,prior = prior, minimum = 2, maximum = 7)
+functions.experimentalPriorNoSpin(time = time, prior = prior, minimum = 2, maximum = 7)
 
 result_short = functions.sampler(prior = prior, nlive = 250, dlogz = 1, detectors = detectors, name = name)
 
